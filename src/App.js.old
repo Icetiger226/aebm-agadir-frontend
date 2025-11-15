@@ -1,0 +1,313 @@
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './App.css';
+
+// Layout
+import MainLayout from './layouts/MainLayout';
+
+// Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import News from './pages/News';
+import Events from './pages/Events';
+import Forum from './pages/Forum';
+import Guide from './pages/Guide';
+import Profile from './pages/Profile';
+import Directory from './pages/Directory';
+import Treasury from './pages/Treasury';
+import AdminDashboard from './pages/AdminDashboard';
+
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
+
+  // Handle login
+  const handleLogin = (loginData) => {
+    setIsAuthenticated(true);
+    setUser({
+      firstName: 'Aminata',
+      lastName: 'Ouedraogo',
+      email: loginData.email,
+      role: 'member' // or 'admin', 'treasurer', etc.
+    });
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setUser(null);
+  };
+
+  // Handle registration
+  const handleRegister = (registerData) => {
+    setIsAuthenticated(true);
+    setUser({
+      firstName: registerData.firstName,
+      lastName: registerData.lastName,
+      email: registerData.email,
+      role: 'member'
+    });
+  };
+
+  return (
+    <Router>
+      <MainLayout isAuthenticated={isAuthenticated} onLogout={handleLogout}>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/forum" element={<Forum />} />
+          <Route path="/guide" element={<Guide />} />
+          
+          {/* Auth Routes */}
+          <Route path="/login" element={<Login onLogin={handleLogin} />} />
+          <Route path="/register" element={<Register onRegister={handleRegister} />} />
+          
+          {/* Protected Routes - Member */}
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/directory" element={<Directory />} />
+          <Route path="/treasury" element={<Treasury />} />
+          
+          {/* Protected Routes - Admin */}
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Routes>
+      </MainLayout>
+    </Router>
+          <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <div className="flex items-center space-x-3">
+              <div className="relative w-12 h-8 rounded overflow-hidden shadow-md">
+                <div className="absolute top-0 w-full h-1/2 bg-red-600"></div>
+                <div className="absolute bottom-0 w-full h-1/2 bg-green-600"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-400 text-lg">★</div>
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-red-600 to-green-600 bg-clip-text text-transparent">
+                AEBM Agadir
+              </span>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-8">
+              <a href="#accueil" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Accueil</a>
+              <a href="#membres" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Membres</a>
+              <a href="#evenements" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Événements</a>
+              <a href="#forum" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Forum</a>
+              <a href="#contact" className="text-gray-700 hover:text-red-600 transition-colors font-medium">Contact</a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-gray-700 hover:text-red-600"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4 space-y-3 border-t">
+              <a href="#accueil" className="block text-gray-700 hover:text-red-600 py-2">Accueil</a>
+              <a href="#membres" className="block text-gray-700 hover:text-red-600 py-2">Membres</a>
+              <a href="#evenements" className="block text-gray-700 hover:text-red-600 py-2">Événements</a>
+              <a href="#forum" className="block text-gray-700 hover:text-red-600 py-2">Forum</a>
+              <a href="#contact" className="block text-gray-700 hover:text-red-600 py-2">Contact</a>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-600 via-yellow-500 to-green-600 bg-clip-text text-transparent">
+            Bienvenue sur la Plateforme AEBM Agadir
+          </h1>
+          <p className="text-xl text-gray-600 mb-8">
+            Votre communauté d'étudiants et stagiaires burkinabè à Agadir
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <button
+              onClick={() => openModal('login')}
+              className="px-8 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-full font-bold hover:shadow-xl transform hover:-translate-y-1 transition-all"
+            >
+              Se Connecter
+            </button>
+            <button
+              onClick={() => openModal('register')}
+              className="px-8 py-3 bg-white text-red-600 border-2 border-red-600 rounded-full font-bold hover:bg-red-600 hover:text-white transition-all"
+            >
+              S'inscrire
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Nos Services</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border-t-4 border-red-600"
+            >
+              <div className="text-5xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold text-red-600 mb-2">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section
+        ref={statsRef}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      >
+        <div className="bg-gradient-to-r from-green-600 to-green-700 rounded-3xl p-8 md:p-12 text-white shadow-2xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-5xl font-bold mb-2">{stats.members}</div>
+              <div className="text-lg opacity-90">Membres Actifs</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold mb-2">{stats.events}</div>
+              <div className="text-lg opacity-90">Événements Organisés</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold mb-2">{stats.universities}</div>
+              <div className="text-lg opacity-90">Universités</div>
+            </div>
+            <div>
+              <div className="text-5xl font-bold mb-2">{stats.satisfaction}%</div>
+              <div className="text-lg opacity-90">Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">Événements à Venir</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {events.map((event, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300"
+            >
+              <div className="bg-gradient-to-br from-yellow-400 to-red-600 h-40 flex items-center justify-center text-6xl">
+                {event.icon}
+              </div>
+              <div className="p-6">
+                <div className="text-green-600 font-bold mb-2">{event.date}</div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">{event.title}</h3>
+                <p className="text-gray-600 mb-4 text-sm">{event.desc}</p>
+                <button className="w-full py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
+                  S'inscrire
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-yellow-400 font-bold mb-4">À Propos</h3>
+              <p className="text-gray-400 text-sm">
+                L'AEBM Agadir est une association qui rassemble les étudiants et stagiaires burkinabè résidant à Agadir.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-yellow-400 font-bold mb-4">Liens Rapides</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Qui sommes-nous ?</a>
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Mot du Président</a>
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Organigramme</a>
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Galerie Photos</a>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-yellow-400 font-bold mb-4">Contact</h3>
+              <div className="space-y-2 text-sm text-gray-400">
+                <p>📧 contact@aebm-agadir.ma</p>
+                <p>📱 +212 6XX XXX XXX</p>
+                <p>📍 Agadir, Maroc</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-yellow-400 font-bold mb-4">Suivez-nous</h3>
+              <div className="space-y-2">
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Facebook</a>
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Instagram</a>
+                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">WhatsApp</a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 AEBM Agadir. Tous droits réservés. | Développé avec ❤️ pour la communauté burkinabè</p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
+        >
+          <div
+            className="bg-white rounded-2xl p-8 max-w-md w-full shadow-2xl transform transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-red-600">
+                {modalType === 'login' ? 'Connexion' : 'Inscription'}
+              </h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-500 hover:text-red-600 text-3xl"
+              >
+                ×
+              </button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Email</label>
+                <input
+                  type="email"
+                  placeholder="votre.email@exemple.com"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-600 focus:outline-none transition-colors"
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 font-medium mb-2">Mot de passe</label>
+                <input
+                  type="password"
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-red-600 focus:outline-none transition-colors"
+                />
+              </div>
+              <button
+                onClick={handleSubmit}
+                className="w-full py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-bold hover:shadow-xl transition-all"
+              >
+                {modalType === 'login' ? 'Se Connecter' : 'S\'inscrire'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default App;
