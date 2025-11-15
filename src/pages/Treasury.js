@@ -5,7 +5,7 @@ const Treasury = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
   const cotisationInfo = {
-    amount: 100,
+    amount: 200,
     currency: 'MAD',
     dueDate: '2025-12-31',
     status: 'pending', // 'paid', 'pending', 'overdue'
@@ -25,13 +25,6 @@ const Treasury = () => {
       name: 'Carte Bancaire (CMI)',
       icon: '💳',
       description: 'Visa, Mastercard, CIB',
-      available: true
-    },
-    {
-      id: 'paydunya',
-      name: 'PayDunya',
-      icon: '💰',
-      description: 'Mobile Money et cartes',
       available: true
     },
     {
