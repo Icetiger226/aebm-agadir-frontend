@@ -25,7 +25,7 @@ const Events = () => {
       category: 'social',
       attendees: 45,
       maxAttendees: 100,
-      image: 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800',
+      image: 'https://aujourdhui.ma/wp-content/uploads/2016/02/unversite-2741-2012-08-07.jpg',
       isRegistrationOpen: true
     },
     {
