@@ -31,7 +31,7 @@ const News = () => {
       date: '2025-10-28',
       author: 'Président',
       category: 'academique',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800',
+      image: 'https://aujourdhui.ma/wp-content/uploads/2016/02/unversite-2741-2012-08-07.jpg',
       isImportant: true
     },
     {
