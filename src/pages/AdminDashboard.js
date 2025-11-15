@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { 
-  BarChart3, Users, Calendar, MessageSquare, DollarSign, FileText, 
+  BarChart3, Users, Calendar, DollarSign, FileText, 
   Settings, Plus, Edit2, Trash2, Eye, TrendingUp, AlertCircle,
   CheckCircle, Clock, Search
 } from 'lucide-react';

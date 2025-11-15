@@ -252,9 +252,9 @@ const MainLayout = ({ children, isAuthenticated = false, onLogout }) => {
             <div>
               <h3 className="text-yellow-400 font-bold mb-4 text-sm">Suivez-nous</h3>
               <div className="space-y-2">
-                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Facebook</a>
-                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Instagram</a>
-                <a href="#" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">WhatsApp</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Facebook</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">Instagram</a>
+                <a href="https://wa.me" target="_blank" rel="noopener noreferrer" className="block text-gray-400 hover:text-yellow-400 text-sm transition-colors">WhatsApp</a>
               </div>
             </div>
           </div>

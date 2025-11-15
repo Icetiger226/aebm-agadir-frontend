@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Filter, Mail, Phone, School, BookOpen, MapPin, Users, MessageCircle } from 'lucide-react';
+import { Search, Mail, Phone, School, BookOpen, MapPin, Users, MessageCircle } from 'lucide-react';
 
 const Directory = () => {
   const [searchTerm, setSearchTerm] = useState('');

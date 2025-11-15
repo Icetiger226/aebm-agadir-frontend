@@ -21,7 +21,7 @@ import AdminDashboard from './pages/AdminDashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState(null);
+  const [, setUser] = useState(null);
 
   // Handle login
   const handleLogin = (loginData) => {

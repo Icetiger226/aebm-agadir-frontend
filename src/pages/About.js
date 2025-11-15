@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Users, Target, Heart, Award, TrendingUp, Globe } from 'lucide-react';
+import { Users, Target, Heart, Globe } from 'lucide-react';
 
 const About = () => {
   const values = [

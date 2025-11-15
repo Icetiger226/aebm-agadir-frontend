@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, MapPin, Users, Clock, Tag, Search, Filter } from 'lucide-react';
+import { Calendar, MapPin, Users, Clock, Search } from 'lucide-react';
 
 const Events = () => {
   const [selectedTab, setSelectedTab] = useState('upcoming');
